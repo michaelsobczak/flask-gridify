@@ -2,6 +2,7 @@
 {% block content %}
 <div class="model-grid-container" id="model-grid">
 </div>
+{{ macros.create_grid("model-grid", class_name, attributes) }}
 {% for a in attributes %}
 <p>{{ a.name }}: {{ a.datatype }}</p>
 {% endfor %}

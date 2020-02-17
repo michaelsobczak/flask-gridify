@@ -16,6 +16,9 @@ class FlaskGridify(object):
         self.url_prefix = root_url_prefix
         self.rest_api_manager = APIManager(self.app, flask_sqlalchemy_db=flask_sqlalchemy_db)
 
+        static_blueprint = Blueprint('flask-gridify', __name__, static_folder='static', static_url_path='/flask-gridify')
+        self.app.register_blueprint(static_blueprint)
+
     def teardown(self, exception):
         pass
 
@@ -36,7 +39,7 @@ class FlaskGridify(object):
             # create the views
             @model_blueprint.route(f'/')
             def model_view():
-                return render_template('grid.html.jinja', attributes=attrs)
+                return render_template('grid.html.jinja', class_name=name, attributes=attrs)
 
         route_maker(attributes)
         self.app.register_blueprint(model_blueprint)

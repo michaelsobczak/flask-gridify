@@ -1,0 +1,89 @@
+{% macro create_grid(grid_container_id, class_name, attributes) %}
+<script src="{{ url_for('flask-gridify.static', filename='thirdparty/jsgrid/jsgrid.min.js') }}"></script>
+
+<link rel="stylesheet" href="{{ url_for('flask-gridify.static', filename='thirdparty/jsgrid/jsgrid.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('flask-gridify.static', filename='thirdparty/jsgrid/jsgrid-theme.min.css') }}">
+<script>
+
+    var SQL_GRID_TYPE_MAP = {
+        INTEGER: "number",
+        TEXT: "text",
+        BOOLEAN: "checkbox",
+        VARCHAR: "text",
+    };
+
+    grid_container_element = $("#{{ grid_container_id }}");
+    function load_data(filter) {
+        var pageIndex = grid_container_element.data('JSGrid').pageIndex;
+        var pageSize = grid_container_element.data('JSGrid').pageSize;
+        var d = $.Deferred();
+        console.log("calling load data...");
+        $.ajax({
+            url: "/api/{{ class_name }}?page=" + pageIndex + "&results_per_page=" + pageSize,
+            dataType: "json"
+        }).done(function(response) {
+            console.log(response);
+            var data = response['objects'];
+            d.resolve(data);
+        });
+        return d.promise();
+    }
+
+    function insert_data(item) {
+        var d = $.Deferred();
+        $.ajax({
+            type: "POST",
+            url: "/api/{{ class_name }}",
+            contentType: "application/json",
+            data: JSON.stringify(item),
+        }).done(function(response) {
+            d.resolve(response);
+        });
+        return d.promise();
+    }
+
+
+    function delete_data(item) {
+        return $.ajax({
+            type: "DELETE",
+            url: "/api/{{ class_name }}/" + item.id,
+        });
+    }
+
+    function update_data(item) {
+        var d = $.Deferred();
+        $.ajax({
+            type: "PUT",
+            url: "/api/{{ class_name }}/" + item.id,
+            contentType: "application/json",
+            data: JSON.stringify(item),
+        }).done(function(response) {
+            d.resolve(response);
+        });
+        return d.promise();
+    }
+
+
+    grid_container_element.jsGrid({
+        width: "100%",
+        sorting: false,
+        paging: true,
+        autoload: true,
+        inserting: true,
+        pageSize: 20,
+        editing: true,
+        controller: {
+            loadData: load_data,
+            updateItem: update_data,
+            deleteItem: delete_data,
+            insertItem: insert_data
+        },
+        fields: [
+            {% for attribute in attributes %}
+            { name: "{{ attribute.name }}", type: SQL_GRID_TYPE_MAP["{{ attribute.datatype }}"]},
+            {% endfor %}
+            { name: "control", width: 100, type: "control" }
+        ]
+    });
+</script>
+{% endmacro %}

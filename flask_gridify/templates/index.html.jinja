@@ -1,12 +1,13 @@
+{% import "macros.html.jinja" as macros %}
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:svg="http://www.w3.org/2000/svg"
       xmlns:vml="urn:schemas-microsoft-com:vml">
     <head>
-    <script src="{{ url_for('static', filename='thirdparty/jquery-3.4.1.min.js') }}"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='thirdparty/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
-    <script src="{{ url_for('static', filename='thirdparty/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('flask-gridify.static', filename='thirdparty/jquery-3.4.1.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('flask-gridify.static', filename='thirdparty/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('flask-gridify.static', filename='base.css') }}">
+    <script src="{{ url_for('flask-gridify.static', filename='thirdparty/bootstrap.min.js') }}"></script>
     </head>
     <header>
     </header>

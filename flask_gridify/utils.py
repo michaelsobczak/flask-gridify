@@ -23,4 +23,4 @@ def get_attributes(sqlalchemy_model_class) -> List[ModelAttribute]:
     t = sqlalchemy_model_class.__table__
     columns = t.columns
     foreign_keys = t.foreign_keys
-    return [ModelAttribute(name=c.name, datatype=c.type) for c in columns]
+    return [ModelAttribute(name=c.name, datatype='VARCHAR' if 'VARCHAR' in str(c.type) else c.type) for c in columns]
