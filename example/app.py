@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template_string
 import os
 
 from sqlalchemy.ext.declarative import declarative_base
@@ -59,7 +59,7 @@ def init_app():
 
 @app.route('/')
 def index():
-    return 'Hello, World!'
+    return "lamO" #render_template_string('{% import "/flask-gridify/macros.html" as macros %}')
 
 
 if __name__ == '__main__':
