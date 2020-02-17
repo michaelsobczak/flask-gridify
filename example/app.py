@@ -47,7 +47,7 @@ class Note(Base):
     text = Column(Text)
     user_id = Column(Integer, ForeignKey('user.id'))
 
-grid = FlaskGridify(app)
+grid = FlaskGridify(app, flask_sqlalchemy_db=db, root_url_prefix='/grids')
 
 @app.before_first_request
 def init_app():

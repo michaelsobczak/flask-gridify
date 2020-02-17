@@ -1,0 +1,8 @@
+{% extends "index.html.jinja" %}
+{% block content %}
+<div class="model-grid-container" id="model-grid">
+</div>
+{% for a in attributes %}
+<p>{{ a.name }}: {{ a.datatype }}</p>
+{% endfor %}
+{% endblock %}

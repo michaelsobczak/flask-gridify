@@ -1,0 +1,3 @@
+recursive-include flask-gridify/templates *
+recursive-include flask-gridify/static *
+
