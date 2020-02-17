@@ -1,4 +1,4 @@
-from flask import Flask, render_template_string
+from flask import Flask, render_template
 import os
 
 from sqlalchemy.ext.declarative import declarative_base
@@ -25,7 +25,7 @@ def get_db_url():
 def get_engine():
     return create_engine(get_db_url)
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 app.config['SQLALCHEMY_DATABASE_URI'] = get_db_url()
 db = SQLAlchemy(app)
 
@@ -59,7 +59,7 @@ def init_app():
 
 @app.route('/')
 def index():
-    return "lamO" #render_template_string('{% import "/flask-gridify/macros.html" as macros %}')
+    return render_template('index.html.jinja')
 
 
 if __name__ == '__main__':

@@ -39,7 +39,7 @@ class FlaskGridify(object):
             # create the views
             @model_blueprint.route(f'/')
             def model_view():
-                return render_template('grid.html.jinja', class_name=name, attributes=attrs)
+                return render_template('gridify/grid.html.jinja', class_name=name, attributes=attrs)
 
         route_maker(attributes)
         self.app.register_blueprint(model_blueprint)
