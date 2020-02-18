@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 from flask_gridify import FlaskGridify
 
-from .models import User, Note, get_db_url, get_db_path
+from .models import User, Note, get_db_url, get_db_path, Base
 
 app = Flask(__name__, template_folder='templates')
 app.config['SQLALCHEMY_DATABASE_URI'] = get_db_url()

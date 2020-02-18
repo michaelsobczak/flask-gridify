@@ -1,16 +1,25 @@
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, ForeignKey, Integer, Text, create_engine, Table, Boolean, String
+from sqlalchemy import Column, ForeignKey, Integer, Text, create_engine, Table, Boolean, String, Float, Enum
 from sqlalchemy.orm import relationship
 import os
+import enum
 
 Base = declarative_base()
+
+class UserRole(enum.Enum):
+    GUEST = 'guest'
+    MODERATOR = 'moderator'
+    ADMIN = 'admin'
 
 class User(Base):
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True)
     username = Column(String(64), unique=True)
     email = Column(String(120))
+    description = Column(Text)
+    rating = Column(Float)
     verified = Column(Boolean)
+    role = Column(Enum(UserRole))
     notes = relationship('Note')
 
 class Note(Base):

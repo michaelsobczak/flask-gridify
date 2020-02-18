@@ -11,8 +11,9 @@
     var SQL_GRID_TYPE_MAP = {
         INTEGER: "number",
         TEXT: "text",
-        BOOLEAN: "checkbox",
-        VARCHAR: "text",
+        BOOL: "checkbox",
+        FLOAT: "text",
+        ENUM: "select"
     };
 
     grid_container_element = $("#{{ grid_container_id }}");
@@ -20,12 +21,10 @@
         var pageIndex = grid_container_element.data('JSGrid').pageIndex;
         var pageSize = grid_container_element.data('JSGrid').pageSize;
         var d = $.Deferred();
-        console.log("calling load data...");
         $.ajax({
             url: "/api/{{ class_name }}?page=" + pageIndex + "&results_per_page=" + pageSize,
             dataType: "json"
         }).done(function(response) {
-            console.log(response);
             var data = response['objects'];
             d.resolve(data);
         });
@@ -83,7 +82,7 @@
         },
         fields: [
             {% for attribute in attributes %}
-            { name: "{{ attribute.name }}", type: SQL_GRID_TYPE_MAP["{{ attribute.datatype }}"]},
+            { name: "{{ attribute.name }}", type: SQL_GRID_TYPE_MAP["{{ attribute.datatype.name }}"]},
             {% endfor %}
             { name: "control", width: 100, type: "control" }
         ]

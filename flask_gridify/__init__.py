@@ -17,8 +17,6 @@ class FlaskGridify(object):
         self.rest_api_manager = APIManager(self.app, flask_sqlalchemy_db=flask_sqlalchemy_db)
         self.app.config['GRID_REGISTRY'] = {}
         template_folder = pkg_resources.resource_filename('flask_gridify', 'templates')
-        print(f'template folder: {template_folder} contents: {os.listdir(template_folder)}')
-        print(f'more contents: {os.listdir(os.path.join(template_folder, "gridify"))}')
         static_blueprint = Blueprint('flask-gridify', __name__, 
             static_folder=pkg_resources.resource_filename('flask_gridify', 'static'), static_url_path='/flask-gridify',
             template_folder=template_folder)

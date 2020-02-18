@@ -12,4 +12,4 @@ upload: build
 	rm README.rst
 
 run:
-	FLASK_APP=example flask run --host=0.0.0.0
+	FLASK_APP=example FLASK_DEBUG=true flask run --host=0.0.0.0
