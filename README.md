@@ -49,11 +49,16 @@ The extension also exposes Jinja template macros you can use to embed the editab
 
 ## Developer information
 
-Beyond just installing the `--dev` packages with pipenv, you'll also need to install pandoc. That can be done with:
+This project uses a Makefile to build, upload and run example app. You'll need to have
+installed your `pipenv` with `--dev` to ensure you have the necessary packages for
+development.
 
-* Linux: `sudo apt-get -y install pandoc`
-* Mac: `brew install pandoc`
-* Windows: ???
+* `make build`
+	* this will build a source distribution of the package
+* `make upload`
+	* this will build the package and upload it to pypi
+* `make run`
+	* this runs the example app in the repo
 
 ## TODO
 * Add Enum field support
