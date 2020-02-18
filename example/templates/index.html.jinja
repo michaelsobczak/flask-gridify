@@ -1,3 +1,4 @@
+{# This macros file is made available by FlaskGridify #}
 {% import "gridify/macros.html.jinja" as macros %}
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -14,6 +15,10 @@
     {% endblock %}
     </main>
     {% block scripts %}
+
+    {# This macro is made available to any app using FlaskGridify
+        TODO: The GRID_REGISTRY is a global jinja variable added by extension
+        trying to remove the explicit need for it to be passed in #}
     {{ macros.create_grid("user-grid", "user", GRID_REGISTRY["user"]) }}
     {{ macros.create_grid("note-grid", "note", GRID_REGISTRY["note"]) }}
     {% endblock %}
