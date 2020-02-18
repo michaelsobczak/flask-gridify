@@ -1,5 +1,5 @@
 # flask-gridify
-flask extension for making editable grids from sqlalchemy models
+flask extension for making editable grids from sqlalchemy models. In the `example` directory of the repo you can find a mimimal flask app demonstrating features and usage of the extension. The code snippets below are all from the example.
 
 ## Usage
 
@@ -35,3 +35,23 @@ When you run the app, you'll have the following URL routes:
 	* This is the grid page created for the User model
 
 Additionally, the extension will create and use a REST API for each gridified model class that can be used by your application. It uses the [FlaskRestless](https://flask-restless.readthedocs.io/en/stable/) extension so information on the formatting and URLs can be found there
+
+### Using FlaskGridify in Templates
+
+The extension also exposes Jinja template macros you can use to embed the editable grids for models in your pages. In the `example/templates/index.html.jinja` template file we create grids for the User and Note model classes like so:
+
+```
+    <div id="user-grid"></div>
+    <div id="note-grid"></div>
+    {{ macros.create_grid("user-grid", "user", GRID_REGISTRY["user"]) }}
+    {{ macros.create_grid("note-grid", "note", GRID_REGISTRY["note"]) }}
+```
+
+## TODO
+* Add Enum field support
+* Add relationship field support
+	* many to one
+	* many to many
+* Clean up the exposed macros to avoid reference to `GRID_REGISTRY`
+
+
