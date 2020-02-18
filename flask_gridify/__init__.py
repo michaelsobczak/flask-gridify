@@ -1,5 +1,5 @@
 from flask import current_app, _app_ctx_stack
-
+import pkg_resources
 from .utils import get_attributes
 
 from flask import Blueprint, render_template
@@ -16,7 +16,9 @@ class FlaskGridify(object):
         self.url_prefix = root_url_prefix
         self.rest_api_manager = APIManager(self.app, flask_sqlalchemy_db=flask_sqlalchemy_db)
         self.app.config['GRID_REGISTRY'] = {}
-        static_blueprint = Blueprint('flask-gridify', __name__, static_folder='static', static_url_path='/flask-gridify')
+        static_blueprint = Blueprint('flask-gridify', __name__, 
+            static_folder=pkg_resources.resource_filename('flask_gridify', 'static'), static_url_path='/flask-gridify',
+            template_folder=pkg_resources.resource_filename('flask_gridify', 'templates'))
         self.app.register_blueprint(static_blueprint)
 
         def wrapper(a):
