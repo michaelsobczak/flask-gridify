@@ -35,6 +35,7 @@ class ModelAttribute:
 def get_attributes(sqlalchemy_model_class) -> List[ModelAttribute]:
     mapper = class_mapper(sqlalchemy_model_class)
     
+    t = sqlalchemy_model_class.__table__
     attributes = []
     for p in mapper.iterate_properties:
         column_name = p.key
@@ -49,14 +50,16 @@ def get_attributes(sqlalchemy_model_class) -> List[ModelAttribute]:
                 continue
             else:
                 datatype = _SQL_GRIDIFY_TYPE_MAP[sql_datatype]
-                # if datatype == FlaskGridifyDatatypes.ENUM:
-                #     print(type(p))
-                #     print(sql_datatype)
-                #     print(dir(sql_datatype))
-                #     print(type(p.columns[0]))
-                #     print(dir(p.columns[0]))
-                #     print(p.columns[0].constraints)
-                #     print(p.columns[0].desc)
+                if datatype == FlaskGridifyDatatypes.ENUM:
+                    pass
+                    # print(p.columns[0].enum_class)
+                    # print(type(p))
+                    # print(sql_datatype)
+                    # print(dir(sql_datatype))
+                    # print(type(p.columns[0]))
+                    # print(dir(p.columns[0]))
+                    # print(p.columns[0].constraints)
+                    # print(p.columns[0].desc)
 
             if datatype:
                 attributes.append(
