@@ -15,9 +15,20 @@ class FlaskGridify(object):
         self.app = app
         self.url_prefix = root_url_prefix
         self.rest_api_manager = APIManager(self.app, flask_sqlalchemy_db=flask_sqlalchemy_db)
-
+        self.app.config['GRID_REGISTRY'] = {}
         static_blueprint = Blueprint('flask-gridify', __name__, static_folder='static', static_url_path='/flask-gridify')
         self.app.register_blueprint(static_blueprint)
+
+        def wrapper(a):
+            app = a
+            @app.context_processor
+            def inject_attribute_map():
+                return {
+                    'GRID_REGISTRY': app.config['GRID_REGISTRY']
+                }
+
+        wrapper(self.app)
+        
 
     def teardown(self, exception):
         pass
@@ -30,6 +41,7 @@ class FlaskGridify(object):
             template_folder='templates',
             url_prefix=model_url_prefix)
         attributes = get_attributes(sqlalchemy_model_class)
+        self.app.config['GRID_REGISTRY'][name] = attributes
         # create the REST API
         api_attributes_list = [ a.name for a in attributes ]
         api_blueprint = self.rest_api_manager.create_api_blueprint(sqlalchemy_model_class, methods=['GET', 'POST', 'PUT', 'DELETE'])

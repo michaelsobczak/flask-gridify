@@ -1,4 +1,22 @@
-{% extends "gridify/base.html" %}
-{% block content %}
-<p>WOOOOOO</p>
-{% endblock %}
+{% import "gridify/macros.html.jinja" as macros %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:vml="urn:schemas-microsoft-com:vml">
+    <head>
+    </head>
+    <header>
+    </header>
+    <main role="main" class="container">
+    {% block content %}
+    <div id="user-grid"></div>
+    <div id="note-grid"></div>
+    {% endblock %}
+    </main>
+    {% block scripts %}
+    {{ macros.create_grid("user-grid", "user", GRID_REGISTRY["user"]) }}
+    {{ macros.create_grid("note-grid", "note", GRID_REGISTRY["note"]) }}
+    {% endblock %}
+    {% block tail %}
+    {% endblock %}
+</html>

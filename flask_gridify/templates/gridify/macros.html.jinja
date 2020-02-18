@@ -1,6 +1,9 @@
 {% macro create_grid(grid_container_id, class_name, attributes) %}
+<script src="{{ url_for('flask-gridify.static', filename='thirdparty/jquery-3.4.1.min.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('flask-gridify.static', filename='thirdparty/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('flask-gridify.static', filename='base.css') }}">
+<script src="{{ url_for('flask-gridify.static', filename='thirdparty/bootstrap.min.js') }}"></script>
 <script src="{{ url_for('flask-gridify.static', filename='thirdparty/jsgrid/jsgrid.min.js') }}"></script>
-
 <link rel="stylesheet" href="{{ url_for('flask-gridify.static', filename='thirdparty/jsgrid/jsgrid.min.css') }}">
 <link rel="stylesheet" href="{{ url_for('flask-gridify.static', filename='thirdparty/jsgrid/jsgrid-theme.min.css') }}">
 <script>
