@@ -18,14 +18,14 @@ _LONG_DESCRIPTION = '{LONGDESCRIPTION}'
 
 setup(
     name='flask-gridify',
-    version='0.1.1',
+    version='0.1.4',
     url=_REPO_URL,
     download_url='https://github.com/michaelsobczak/flask-gridify/archive/0.1.0.tar.gz',
     license='MIT',
     author='Michael Sobczak',
     author_email='mikesobczak.code@gmail.com',
     description='Automatically create editable grids in browser from SQLAlchemy models',
-    long_description=f'View README.md and code on on github\n\n\t{_REPO_URL}',
+    long_description=_LONG_DESCRIPTION,
     packages=['flask_gridify'],
     keywords=['Flask', 'FlaskSQLAlchemy', 'FlaskRestless', 'jsgrid', 'data table'],
     zip_safe=False,
