@@ -15,15 +15,9 @@ db = SQLAlchemy(app)
 #   the created pages will be /grids/<model_name> due to root_url_prefix
 grid = FlaskGridify(app, flask_sqlalchemy_db=db, root_url_prefix='/grids')
 
-@app.before_first_request
-def init_app():
-    if not os.path.exists(get_db_path()):
-        Base.metadata.create_all(bind=db.engine)
+if not os.path.exists(get_db_path()):
+    Base.metadata.create_all(bind=db.engine)
 
-    # register the User and Note SQLAlchemy models
-    #   This will create /grids/note and /grids/user pages with grids
-    grid.gridify(User)
-    grid.gridify(Note)
-
-
+grid.gridify(User)
+grid.gridify(Note)
 from . import views, models
