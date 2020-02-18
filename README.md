@@ -54,4 +54,11 @@ The extension also exposes Jinja template macros you can use to embed the editab
 	* many to many
 * Clean up the exposed macros to avoid reference to `GRID_REGISTRY`
 
+## Dependencies
+* Server side
+	* [Flask-SQLAlchemy](https://flask-sqlalchemy.palletsprojects.com/en/2.x/)
+	* [Flask-Restless](https://flask-restless.readthedocs.io/en/stable/)
+* Client side
+	* [jsgrid](http://js-grid.com/)
+
 

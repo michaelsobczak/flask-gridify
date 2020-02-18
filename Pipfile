@@ -9,7 +9,6 @@ verify_ssl = true
 flask-sqlalchemy = "*"
 flask-restless = "*"
 flask-gridify = {editable = true,path = "."}
-sqlalchemy = "*"
 
 [requires]
 python_version = "3.7"
