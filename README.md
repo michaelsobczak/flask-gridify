@@ -47,6 +47,14 @@ The extension also exposes Jinja template macros you can use to embed the editab
     {{ macros.create_grid("note-grid", "note", GRID_REGISTRY["note"]) }}
 ```
 
+## Developer information
+
+Beyond just installing the `--dev` packages with pipenv, you'll also need to install pandoc. That can be done with:
+
+* Linux: `sudo apt-get -y install pandoc`
+* Mac: `brew install pandoc`
+* Windows: ???
+
 ## TODO
 * Add Enum field support
 * Add relationship field support

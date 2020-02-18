@@ -2,7 +2,7 @@
 flask-gridify
 -------------
 
-This extension creates editable grids from sqlalchemy models
+
 """
 from setuptools import setup
 
@@ -11,15 +11,21 @@ def parse_requirements(filename):
     lineiter = (line.strip() for line in open(filename))
     return [line for line in lineiter if line and (not line.startswith("#") and not line.startswith("-"))]
 
+
+_REPO_URL = 'https://github.com/michaelsobczak/flask-gridify'
+
+_LONG_DESCRIPTION = '{LONGDESCRIPTION}'
+
 setup(
     name='flask-gridify',
-    version='0.1.0',
-    url='https://github.com/michaelsobczak/flask-gridify',
-    license='BSD',
+    version='0.1.1',
+    url=_REPO_URL,
+    download_url='https://github.com/michaelsobczak/flask-gridify/archive/0.1.0.tar.gz',
+    license='MIT',
     author='Michael Sobczak',
     author_email='mikesobczak.code@gmail.com',
-    description='Very short description',
-    long_description=__doc__,
+    description='Automatically create editable grids in browser from SQLAlchemy models',
+    long_description=f'View README.md and code on on github\n\n\t{_REPO_URL}',
     packages=['flask_gridify'],
     keywords=['Flask', 'FlaskSQLAlchemy', 'FlaskRestless', 'jsgrid', 'data table'],
     zip_safe=False,
