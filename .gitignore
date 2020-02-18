@@ -130,3 +130,6 @@ dmypy.json
 
 # vs code
 .vscode/
+
+# pandoc download
+pandoc-*
