@@ -9,6 +9,7 @@ build: clean
 upload: build
 	twine upload dist/*
 	python dev/depopulate_setup.py
+	rm README.rst
 
 run:
 	FLASK_APP=example flask run --host=0.0.0.0

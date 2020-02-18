@@ -1,7 +1,7 @@
 from flask import current_app, _app_ctx_stack
 import pkg_resources
 from .utils import get_attributes
-
+import os
 from flask import Blueprint, render_template
 from flask_restless import APIManager
 
@@ -16,9 +16,12 @@ class FlaskGridify(object):
         self.url_prefix = root_url_prefix
         self.rest_api_manager = APIManager(self.app, flask_sqlalchemy_db=flask_sqlalchemy_db)
         self.app.config['GRID_REGISTRY'] = {}
+        template_folder = pkg_resources.resource_filename('flask_gridify', 'templates')
+        print(f'template folder: {template_folder} contents: {os.listdir(template_folder)}')
+        print(f'more contents: {os.listdir(os.path.join(template_folder, "gridify"))}')
         static_blueprint = Blueprint('flask-gridify', __name__, 
             static_folder=pkg_resources.resource_filename('flask_gridify', 'static'), static_url_path='/flask-gridify',
-            template_folder=pkg_resources.resource_filename('flask_gridify', 'templates'))
+            template_folder=template_folder)
         self.app.register_blueprint(static_blueprint)
 
         def wrapper(a):

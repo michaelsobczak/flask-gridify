@@ -18,7 +18,7 @@ _LONG_DESCRIPTION = '{LONGDESCRIPTION}'
 
 setup(
     name='flask-gridify',
-    version='0.1.6',
+    version='0.1.8',
     url=_REPO_URL,
     download_url='https://github.com/michaelsobczak/flask-gridify/archive/0.1.0.tar.gz',
     license='MIT',
